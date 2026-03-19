@@ -278,7 +278,7 @@ __host__ __device__ constexpr inline void ggml_unused_vars_impl(Args&&...) noexc
 #else
 #   define GGML_NORETURN _Noreturn
 #endif
-
+	
 #define GGML_ABORT(...) ggml_abort(__FILE__, __LINE__, __VA_ARGS__)
 #define GGML_ASSERT(x) if (!(x)) GGML_ABORT("GGML_ASSERT(%s) failed", #x)
 
@@ -629,6 +629,7 @@ extern "C" {
         GGML_TENSOR_FLAG_OUTPUT =  2, // ...is an output for the GGML compute graph
         GGML_TENSOR_FLAG_PARAM  =  4, // ...contains trainable parameters
         GGML_TENSOR_FLAG_LOSS   =  8, // ...defines loss for numerical optimization (multiple loss tensors add up)
+        GGML_TENSOR_FLAG_COMPUTE = 16, // ...must be computed
     };
 
     enum ggml_tri_type {
